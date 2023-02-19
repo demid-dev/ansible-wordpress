@@ -16,16 +16,18 @@
         region: '{{ region }}'
         name: '{{ keyname }}'
       register: mykey
+
     - name: write the private key to file
-      copy: content="{{ mykey.key.private_key }}" dest="~/.ssh/{{ keyname }}.pem\" mode=0600
+      copy: content="{{ mykey.key.private_key }}" dest="~/.ssh/{{ keyname }}.pem" mode=0600
       when: mykey.changed
+
     - name: create security group
       tags: sg
       ec2_group:
         region: '{{ region }}'
         #your security group name
         name: sg-wordpress
-        description: security group for apsydney webserver host
+        description: security group for us-east1
         rules:
           # allow ssh access from your ip address
           - proto: tcp
@@ -45,23 +47,25 @@
         rules_egress:
           - proto: all
             cidr_ip: 0.0.0.0/0
+
     - name: launch ec2 instance
       tags: ec2
-      ec2:
+      local_action:
+        module: ec2
         region: '{{ region }}'
         key_name: '{{ keyname }}'
         instance_type: '{{ instance_type }}'
         image: '{{ image }}'
         wait: yes
         group: sg-wordpress
-        id: wordpress_launch_1
         instance_tags:
           Name: wordpress-1
           class: wordpress
       register: ec2
     - name: associate new EIP for the instance
       tags: eip
-      ec2_eip:
+      local_action:
+        module: ec2_eip
         region: '{{ region }}'
         instance_id: '{{ item.id }}'
       with_items: ec2.instances
