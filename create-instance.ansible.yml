@@ -1,0 +1,12 @@
+## Launch Basic EC@2 instance in mumbai region.
+- name: Ansible Play
+  hosts: localhost
+  tasks:
+    - name: launching AWS instance using Ansible
+      ec2:
+        key_name: ansible-key
+        region: us-east-1
+        instance_type: t2.micro
+        image: ami-0dfcb1ef8550277af
+        instance_tags:
+          Name: demo-server
