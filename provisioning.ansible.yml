@@ -26,7 +26,7 @@
       ec2_group:
         region: '{{ region }}'
         #your security group name
-        name: sg-wordpress
+        name: security-group-wordpress
         description: security group for us-east1
         rules:
           # allow ssh access from your ip address
@@ -57,7 +57,7 @@
         instance_type: '{{ instance_type }}'
         image: '{{ image }}'
         wait: yes
-        group: sg-wordpress
+        group: security-group-wordpress
         instance_tags:
           Name: wordpress-1
           class: wordpress
