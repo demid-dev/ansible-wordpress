@@ -1,4 +1,4 @@
-## Launch Basic EC@2 instance in mumbai region.
+## Launch Basic EC@2 instance in North Virginia region.
 - name: Ansible Play
   hosts: localhost
   tasks:
