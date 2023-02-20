@@ -1,2 +1,8 @@
-- name: install the 'Development tools' package group
-  yum: name="@Development tools" state=present update_cache=yes
+- name: install newer Python
+  yum: name=python3 state=present
+
+- name: Install and upgrade pip
+  pip:
+    name: pip
+    extra_args: --upgrade
+    executable: pip3

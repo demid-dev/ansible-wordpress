@@ -1,13 +1,13 @@
-ansible_ssh_user: ec2-user  
+ansible_ssh_user: ec2-user
 ansible_ssh_private_key_file: ~/.ssh/wordpress-key.pem
 
 # Which version of WordPress to deploy
 wp_version: 4.5.3
 
 # These are the WordPress database settings
-wp_db_name: wordpress 
+wp_db_name: wordpress
 wp_db_user: wordpress
-# Set your database password here 
+# Set your database password here
 wp_db_password: secret
 
 # WordPress settings
@@ -20,3 +20,4 @@ auto_up_disable: false
 #true  = Development, minor, and major updates are all enabled
 #false = Development, minor, and major updates are all disabled
 #minor = Minor updates are enabled, development, and major updates are disabled
+core_update_level: true

@@ -3,12 +3,12 @@
   gather_facts: no
   vars:
     #your region
-    region: us-east-1
+    region: us-east-2
     keyname: wordpress-key
     #your ip address
-    allowed_ip: 185.223.112.122/32
+    allowed_ip: 18.234.106.29/32
     instance_type: t2.micro
-    image: ami-0dfcb1ef8550277af
+    image: ami-0cc87e5027adcdca8
   tasks:
     - name: create key pair
       tags: keypair
